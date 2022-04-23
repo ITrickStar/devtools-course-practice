@@ -1,6 +1,6 @@
 // Copyright 2022 Miheev Ivan
-
-#pragma once
+#ifndef MODULES_MIHEEV_IVAN_D_ARY_HEAP_INCLUDE_DHEAP_H_
+#define MODULES_MIHEEV_IVAN_D_ARY_HEAP_INCLUDE_DHEAP_H_
 
 #include <stdlib.h>
 #include <algorithm>
@@ -37,3 +37,5 @@ class DHeap {
   void deheapify(int idx);
   void decreaseValue(int pos, int val);
 };
+
+#endif  // MODULES_MIHEEV_IVAN_D_ARY_HEAP_INCLUDE_DHEAP_H_
