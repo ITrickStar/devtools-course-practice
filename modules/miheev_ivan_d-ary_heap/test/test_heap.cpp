@@ -24,7 +24,19 @@ TEST(miheev_ivan_dheap, can_call_constructor_with_input_param) {
 // Must be false
 //TEST(miheev_ivan_dheap, can_create_heap_with_wrong_dary) {
 //  // Assert
-//  ASSERT_NO_THROW(DHeap(5, -2));
+//  ASSERT_NO_THROW(DHeap(3, -2));
 //}
 
+TEST(miheev_ivan_dheap, empty_test) {
+  // Arrange & Act
+  DHeap hp;
+  // Assert
+  ASSERT_NO_THROW(hp.isEmpty());
+}
 
+TEST(miheev_ivan_dheap, insert_test) {
+  // Arrange & Act
+  DHeap hp;
+  // Assert
+  ASSERT_NO_THROW(hp.insert(0));
+}
