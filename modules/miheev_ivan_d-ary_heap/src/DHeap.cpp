@@ -1,7 +1,6 @@
-#pragma once
+// Copyright 2022 Miheev Ivan
 
-#include <vector>
-#include <algorithm>
+#pragma once
 
 #include "include/DHeap.h"
 
@@ -39,20 +38,21 @@ void DHeap::heapify(int idx) {
     if (heaparr[par] > heaparr[curr]) {
       std::swap(heaparr[par], heaparr[curr]);
       curr = par;
-    } else
+    } else {
       break;
+    }
   } while (par != 0);
 }
 
 // Function to heapify at given idx (swap with the smallest child)
 void DHeap::deheapify(int idx) {
   int smallest = idx;
-  
-  if (smallest < size)
-  for (int i = 1; i <= d; i++)
-    if (d * idx + i < size &&
-        heaparr[d * idx + i] < heaparr[smallest])
-          smallest = d * idx + i;
+
+  if (smallest < size) {
+    for (int i = 1; i <= d; i++)
+      if (d * idx + i < size && heaparr[d * idx + i] < heaparr[smallest])
+        smallest = d * idx + i;
+  }
 
   if (smallest != idx) {
     std::swap(heaparr[smallest], heaparr[idx]);
