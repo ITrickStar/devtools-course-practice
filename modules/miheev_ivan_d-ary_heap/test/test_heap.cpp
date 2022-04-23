@@ -18,7 +18,7 @@ TEST(miheev_ivan_dheap, can_call_constructor_with_default_param) {
 
 TEST(miheev_ivan_dheap, can_call_constructor_with_input_param) {
   // Assert
-  ASSERT_NO_THROW(DHeap(5, 2));
+  ASSERT_NO_THROW(DHeap(15, 6));
 }
 
 TEST(miheev_ivan_dheap, dary_larger_than_capacity) {
@@ -59,7 +59,7 @@ TEST(miheev_ivan_dheap, extract_min_test) {
   for (int i = 4; i > 0; i--) hp.insert(i);
   hp.insert(-5);
   // Assert
-  ASSERT_EQ(hp.extractMin(), -5);
+  ASSERT_EQ(-5, hp.extractMin());
 }
 
 TEST(miheev_ivan_dheap, extract_min_with_equal_values_test) {
@@ -67,7 +67,7 @@ TEST(miheev_ivan_dheap, extract_min_with_equal_values_test) {
   DHeap hp;
   for (int i = 4; i > 0; i--) hp.insert(1);
   // Assert
-  ASSERT_EQ(hp.extractMin(), 1);
+  ASSERT_EQ(1, hp.extractMin());
 }
 
 TEST(miheev_ivan_dheap, copy_constructor_test) {
@@ -78,4 +78,13 @@ TEST(miheev_ivan_dheap, copy_constructor_test) {
   while (!hp.isEmpty()) {
     ASSERT_EQ(hp.extractMin(), cpyhp.extractMin());
   }
+}
+
+TEST(miheev_ivan_dheap, extract_decreased_value_test) {
+  // Arrange & Act
+  DHeap hp;
+  for (int i = 10; i > 0; i--) hp.insert(i);
+  hp.decreaseValue(5, -5);
+  // Assert
+    ASSERT_EQ(-5, hp.extractMin());
 }

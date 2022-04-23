@@ -26,4 +26,6 @@ class DHeap {
   bool isFull() { return size == capacity; }
   void insert(double n);
   void heapify(int idx);
+  void deheapify(int idx);
+  void decreaseValue(int pos, int val);
 };

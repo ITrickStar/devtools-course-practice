@@ -11,15 +11,8 @@ void DHeap::insert(double n) {
 
   heaparr[size++] = n;
 
-  int par, curr = size - 1;
-  do {
-    par = (curr - 1) / d;
-    if (heaparr[par] > n) {
-      std::swap(heaparr[par], heaparr[curr]);
-      curr = par;
-    } else
-      break;
-  } while (par != 0);
+  // If heap is not heapified.
+  heapify(size-1);
 }
 
 // Function to extract minimum node from heap
@@ -34,13 +27,25 @@ double DHeap::extractMin() {
   heaparr[0] = lastNode;
 
   // heapify root
-  heapify(0);
+  deheapify(0);
 
   return root;
 }
 
-// Function to heapify at given idx (swap with the smallest child)
 void DHeap::heapify(int idx) {
+  int par, curr = idx;
+  do {
+    par = (curr - 1) / d;
+    if (heaparr[par] > heaparr[curr]) {
+      std::swap(heaparr[par], heaparr[curr]);
+      curr = par;
+    } else
+      break;
+  } while (par != 0);
+}
+
+// Function to heapify at given idx (swap with the smallest child)
+void DHeap::deheapify(int idx) {
   int smallest = idx;
   
   if (smallest < size)
@@ -52,6 +57,15 @@ void DHeap::heapify(int idx) {
   if (smallest != idx) {
     std::swap(heaparr[smallest], heaparr[idx]);
     printf("%d\n", smallest);
-    heapify(smallest);
+    deheapify(smallest);
   }
+}
+
+// Function to decrease value in heap
+void DHeap::decreaseValue(int pos, int val) {
+  // Get the node and update its value
+  heaparr[pos] = val;
+
+  // If heap is not heapified.
+  heapify(pos);
 }
