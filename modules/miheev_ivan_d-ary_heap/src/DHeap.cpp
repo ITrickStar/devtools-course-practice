@@ -1,7 +1,5 @@
 // Copyright 2022 Miheev Ivan
 
-#pragma once
-
 #include "include/DHeap.h"
 
 void DHeap::insert(double n) {
