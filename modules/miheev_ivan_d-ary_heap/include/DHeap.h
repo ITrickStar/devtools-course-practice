@@ -16,9 +16,8 @@ class DHeap {
   std::vector <double> heaparr; // the array on which the heap is built
 
   DHeap() : capacity(1), size(0), d(2) {}  // Default constructor
-  DHeap(int _capacity, int _d) : capacity(_capacity), size(0), d(_d) {
+  DHeap(int _capacity, int _d) : capacity(_capacity), size(0), d(_d), heaparr(_capacity) {
     if (d < 2) throw "d-ary of the heap can't be less then 2";
-    heaparr.resize(capacity);
   }
   DHeap(const DHeap& hp) : capacity(hp.capacity), size(hp.size), d(hp.d), heaparr(hp.heaparr) {}
 
