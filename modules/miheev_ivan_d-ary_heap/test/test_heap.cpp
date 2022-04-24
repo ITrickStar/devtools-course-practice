@@ -1,15 +1,7 @@
 // Copyright 2022 Miheev Ivan
 
 #include <gtest/gtest.h>
-
 #include "include/DHeap.h"
-
-TEST(miheev_ivan_dheap, default_test) {
-  // Arrange & Act
-
-  // Assert
-  ASSERT_NO_THROW();
-}
 
 TEST(miheev_ivan_dheap, can_call_constructor_with_default_param) {
   // Assert
@@ -31,11 +23,24 @@ TEST(miheev_ivan_dheap, can_create_heap_with_wrong_dary) {
   ASSERT_ANY_THROW(DHeap(3, -2));
 }
 
+TEST(miheev_ivan_dheap, can_create_heap_with_wrong_capacity) {
+  // Assert
+  ASSERT_ANY_THROW(DHeap(-5, 2));
+}
+
 TEST(miheev_ivan_dheap, empty_test) {
   // Arrange & Act
   DHeap hp;
   // Assert
   ASSERT_NO_THROW(hp.isEmpty());
+}
+
+TEST(miheev_ivan_dheap, not_empty_test) {
+  // Arrange & Act
+  DHeap hp;
+  hp.insert(1);
+  // Assert
+  ASSERT_EQ(0, hp.isEmpty());
 }
 
 TEST(miheev_ivan_dheap, full_test) {
@@ -45,6 +50,14 @@ TEST(miheev_ivan_dheap, full_test) {
 
   // Assert
   ASSERT_NO_THROW(hp.isFull());
+}
+
+TEST(miheev_ivan_dheap, not_full_test) {
+  // Arrange & Act
+  DHeap hp;
+
+  // Assert
+  ASSERT_EQ(0, hp.isFull());
 }
 
 TEST(miheev_ivan_dheap, insert_test) {

@@ -33,7 +33,9 @@ double DHeap::extractMin() {
 
 // Function to order parent roots at given idx (swap with the smallest parent)
 void DHeap::heapify(int idx) {
+  if (idx > size) throw "out of heap size";
   int par, curr = idx;
+
   do {
     par = (curr - 1) / d;
     if (heaparr[par] > heaparr[curr]) {
@@ -47,6 +49,7 @@ void DHeap::heapify(int idx) {
 
 // Function to order child roots at given idx (swap with the smallest child)
 void DHeap::deheapify(int idx) {
+  if (idx > size) throw "out of heap size";
   int smallest = idx;
 
   if (smallest < size) {
