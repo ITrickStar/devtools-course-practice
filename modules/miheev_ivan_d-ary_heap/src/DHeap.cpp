@@ -1,5 +1,6 @@
 // Copyright 2022 Miheev Ivan
 
+#include <algorithm>
 #include "include/DHeap.h"
 
 void DHeap::insert(double n) {
