@@ -22,7 +22,7 @@ class DHeap {
     heaparr(_capacity) {
     if (d < 2) throw "d-ary of the heap can't be less then 2";
   }
-  DHeap(const DHeap& hp) :
+  DHeap(const DHeap& hp) :  // Default constructor
     d(hp.d),
     capacity(hp.capacity),
     size(hp.size),

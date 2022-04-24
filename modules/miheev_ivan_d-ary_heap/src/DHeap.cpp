@@ -3,6 +3,7 @@
 #include <algorithm>
 #include "include/DHeap.h"
 
+// Function to insert element in heap
 void DHeap::insert(double n) {
   if (this->isFull() || this->isEmpty())
     heaparr.resize(++capacity);
@@ -30,6 +31,7 @@ double DHeap::extractMin() {
   return root;
 }
 
+// Function to order parent roots at given idx (swap with the smallest parent)
 void DHeap::heapify(int idx) {
   int par, curr = idx;
   do {
@@ -43,7 +45,7 @@ void DHeap::heapify(int idx) {
   } while (par != 0);
 }
 
-// Function to heapify at given idx (swap with the smallest child)
+// Function to order child roots at given idx (swap with the smallest child)
 void DHeap::deheapify(int idx) {
   int smallest = idx;
 

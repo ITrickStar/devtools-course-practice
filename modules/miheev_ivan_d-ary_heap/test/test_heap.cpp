@@ -38,6 +38,15 @@ TEST(miheev_ivan_dheap, empty_test) {
   ASSERT_NO_THROW(hp.isEmpty());
 }
 
+TEST(miheev_ivan_dheap, full_test) {
+  // Arrange & Act
+  DHeap hp;
+  hp.insert(1);
+
+  // Assert
+  ASSERT_NO_THROW(hp.isFull());
+}
+
 TEST(miheev_ivan_dheap, insert_test) {
   // Arrange & Act
   DHeap hp;
@@ -73,6 +82,13 @@ TEST(miheev_ivan_dheap, extract_min_with_equal_values_test) {
 TEST(miheev_ivan_dheap, copy_constructor_test) {
   // Arrange & Act
   DHeap hp(4, 3);
+  // Assert
+  ASSERT_NO_THROW(DHeap(hp));
+}
+
+TEST(miheev_ivan_dheap, copy_constructor_equality_test) {
+  // Arrange & Act
+  DHeap hp(4, 3);
   DHeap cpyhp(hp);
   // Assert
   while (!hp.isEmpty()) {
@@ -87,4 +103,12 @@ TEST(miheev_ivan_dheap, extract_decreased_value_test) {
   hp.decreaseValue(5, -5);
   // Assert
     ASSERT_EQ(-5, hp.extractMin());
+}
+
+TEST(miheev_ivan_dheap, throw_empty_test) {
+  // Arrange & Act
+  DHeap hp;
+
+  // Assert
+  ASSERT_ANY_THROW(hp.extractMin());
 }
