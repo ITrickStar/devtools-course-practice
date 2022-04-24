@@ -10,23 +10,22 @@
 class DHeap {
  private:
   int d;  // Sets the d-ary of the heap
+  size_t capacity, size;        // Number of nodes in the heap
+  std::vector<double> heaparr;  // the array on which the heap is built
 
  public:
-  size_t capacity;  // Number of nodes in the heap
-  size_t size;      // Number of existing heap nodes
-  std::vector <double> heaparr;  // the array on which the heap is built
-
-  DHeap() : capacity(1), size(0), d(2) {}  // Default constructor
+  DHeap() : d(2), capacity(1), size(0) {}  // Default constructor
   DHeap(int _capacity, int _d) :
+    d(_d),
     capacity(_capacity),
-    size(0), d(_d),
+    size(0),
     heaparr(_capacity) {
     if (d < 2) throw "d-ary of the heap can't be less then 2";
   }
   DHeap(const DHeap& hp) :
+    d(hp.d),
     capacity(hp.capacity),
     size(hp.size),
-    d(hp.d),
     heaparr(hp.heaparr) {}
 
   double extractMin();
