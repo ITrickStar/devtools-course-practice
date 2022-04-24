@@ -55,7 +55,6 @@ void DHeap::deheapify(int idx) {
 
   if (smallest != idx) {
     std::swap(heaparr[smallest], heaparr[idx]);
-    printf("%d\n", smallest);
     deheapify(smallest);
   }
 }

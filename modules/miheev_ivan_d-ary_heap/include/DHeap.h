@@ -10,7 +10,7 @@
 class DHeap {
  private:
   int d;  // Sets the d-ary of the heap
-  size_t capacity, size;        // Number of nodes in the heap
+  int capacity, size;        // Number of nodes in the heap
   std::vector<double> heaparr;  // the array on which the heap is built
 
  public:
@@ -27,6 +27,9 @@ class DHeap {
     capacity(hp.capacity),
     size(hp.size),
     heaparr(hp.heaparr) {}
+  ~DHeap() {
+    heaparr.clear();
+  }
 
   double extractMin();
   bool isEmpty() { return size == 0; }
