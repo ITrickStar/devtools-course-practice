@@ -34,7 +34,6 @@ std::string CLPApplication::operator()(int argc, const char** argv) {
       ln.SetA_x(strtod(argv[5], NULL));
       ln.SetA_y(strtod(argv[6], NULL));
       ln.SetA_z(strtod(argv[7], NULL));
-      ln.shwLine();
     }
 
     if (argc == 2) {
@@ -42,14 +41,14 @@ std::string CLPApplication::operator()(int argc, const char** argv) {
     }
   }
 
-  if (std::string(argv[i]) == "--plane" || std::string(argv[i]) == "-p") {
+  if ((argc > i) &&
+    (std::string(argv[i]) == "--plane" || std::string(argv[i]) == "-p")) {
     i += 5;
     if (argc >= i) {
       pn.SetA(strtod(argv[2], NULL));
       pn.SetB(strtod(argv[3], NULL));
       pn.SetC(strtod(argv[4], NULL));
       pn.SetD(strtod(argv[5], NULL));
-      pn.shwPlane();
     }
 
     if (argc == 2) {
@@ -82,7 +81,7 @@ std::string CLPApplication::operator()(int argc, const char** argv) {
 }
 
 std::string CLPApplication::help() {
-  std::string help = "This program's purpose to calculate if line crosses the plane or not\n";
+  std::string help = "This program's purpose to calculate if line crosses the plane or not";
   return help;
 }
 
