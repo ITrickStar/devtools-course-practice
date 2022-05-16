@@ -3,6 +3,8 @@
 #include "include/cross_line_and_plane.h"
 
 #include <math.h>
+
+#include <iostream>
 #include <string>
 
 Line& Line::operator=(const Line& Tmp) {
@@ -15,6 +17,15 @@ Line& Line::operator=(const Line& Tmp) {
   return *this;
 }
 
+void Line::shwLine() {
+  std::cout << this->x_1 << " ";
+  std::cout << this->y_1 << " ";
+  std::cout << this->z_1 << " ";
+  std::cout << this->a_x << " ";
+  std::cout << this->a_y << " ";
+  std::cout << this->a_z << std::endl;
+}
+
 Plane& Plane::operator=(const Plane& Tmp) {
   this->a = Tmp.a;
   this->b = Tmp.b;
@@ -23,8 +34,15 @@ Plane& Plane::operator=(const Plane& Tmp) {
   return *this;
 }
 
-void Space::calculate_params(Line Sline, Plane Splane, double* numerator,
-                             double* denominator) {
+void Plane::shwPlane() {
+  std::cout << this->a << " ";
+  std::cout << this->b << " ";
+  std::cout << this->c << " ";
+  std::cout << this->d << std::endl;
+}
+
+void Space::calculate_params(Line Sline, Plane Splane, double& numerator,
+                             double& denominator) {
   /* The function for calculating t = - (D + A*x_1 + B*y_1 + C*z_1) / (A*a_x +
    * B*a_y + C*a_z). Returns the numerator and denominator, that are calculated
    * separately. If they are both equal to zero, then the line lies in the
@@ -32,11 +50,10 @@ void Space::calculate_params(Line Sline, Plane Splane, double* numerator,
    * is parallel to the plane. If they are both nonzero, then the straight line
    * intersects the plane.
    */
-  *numerator = Splane.GetD() + Splane.GetA() * Sline.GetX_1() +
-               Splane.GetB() * Sline.GetY_1() + Splane.GetC() * Sline.GetZ_1();
-  *denominator = Splane.GetA() * Sline.GetA_x() +
-                 Splane.GetB() * Sline.GetA_y() +
-                 Splane.GetC() * Sline.GetA_z();
+  numerator = Splane.GetD() + Splane.GetA() * Sline.GetX_1() +
+              Splane.GetB() * Sline.GetY_1() + Splane.GetC() * Sline.GetZ_1();
+  denominator = Splane.GetA() * Sline.GetA_x() +
+                Splane.GetB() * Sline.GetA_y() + Splane.GetC() * Sline.GetA_z();
 }
 
 int Space::Relationship(Line Sline, Plane Splane) {
@@ -47,7 +64,7 @@ int Space::Relationship(Line Sline, Plane Splane) {
    * the Plane
    */
   double numerator, denominator;
-  calculate_params(Sline, Splane, &numerator, &denominator);
+  calculate_params(Sline, Splane, numerator, denominator);
   if (denominator == 0) {
     if (numerator == 0) {
       return 2;
@@ -59,8 +76,8 @@ int Space::Relationship(Line Sline, Plane Splane) {
   }
 }
 
-void Space::GetPointOfIntersection(Line Sline, Plane Splane, double* common_x,
-                                   double* common_y, double* common_z) {
+void Space::GetPointOfIntersection(Line Sline, Plane Splane, double& common_x,
+                                   double& common_y, double& common_z) {
   /* Returns following values:
    * In the case of line intersects the plane, returns the coordinates
    * of the common point.
@@ -75,11 +92,11 @@ void Space::GetPointOfIntersection(Line Sline, Plane Splane, double* common_x,
     throw error_type;
   }
   double numerator, denomirator;
-  calculate_params(Sline, Splane, &numerator, &denomirator);
+  calculate_params(Sline, Splane, numerator, denomirator);
   double t = -numerator / denomirator;
-  *common_x = Sline.GetX_1() + Sline.GetA_x() * t;
-  *common_y = Sline.GetY_1() + Sline.GetA_y() * t;
-  *common_z = Sline.GetZ_1() + Sline.GetA_z() * t;
+  common_x = Sline.GetX_1() + Sline.GetA_x() * t;
+  common_y = Sline.GetY_1() + Sline.GetA_y() * t;
+  common_z = Sline.GetZ_1() + Sline.GetA_z() * t;
 }
 
 bool Space::IsPerpendicular(Line Sline, Plane Splane) {

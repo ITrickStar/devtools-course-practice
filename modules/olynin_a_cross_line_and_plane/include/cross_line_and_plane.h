@@ -32,6 +32,7 @@ class Line {
   void SetA_x(double ta_x) { this->a_x = ta_x; }
   void SetA_y(double ta_y) { this->a_y = ta_y; }
   void SetA_z(double ta_z) { this->a_z = ta_z; }
+  void shwLine();
 };
 
 class Plane {
@@ -52,17 +53,18 @@ class Plane {
   void SetB(double tb) { this->b = tb; }
   void SetC(double tc) { this->c = tc; }
   void SetD(double td) { this->d = td; }
+  void shwPlane();
 };
 
 class Space {
  protected:
-  void calculate_params(Line Sline, Plane Splane, double* numerator,
-                        double* denominator);
+  void calculate_params(Line Sline, Plane Splane, double& numerator,
+                        double& denominator);
 
  public:
   int Relationship(Line Sline, Plane Splane);
-  void GetPointOfIntersection(Line Sline, Plane Splane, double* common_x,
-                              double* common_y, double* common_z);
+  void GetPointOfIntersection(Line Sline, Plane Splane, double& common_x,
+                              double& common_y, double& common_z);
   bool IsPerpendicular(Line Sline, Plane Splane);
   bool IsOblique(Line Sline, Plane Splane);
 };

@@ -4,7 +4,6 @@
 #define MODULES_OLYNIN_A_CROSS_LINE_AND_PLANE_INCLUDE_CROSS_LINE_AND_PLANE_APP_H_
 
 #include <string>
-#include <stdexcept>
 
 class CLPApplication {
  public:
