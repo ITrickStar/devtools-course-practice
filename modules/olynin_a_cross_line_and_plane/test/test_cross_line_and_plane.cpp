@@ -264,7 +264,7 @@ TEST(Class_Space, Relationship_get_point_of_intersection) {
   Line AB(-3, 0, -2, -1, -3, 3);
   Plane a(1, -2, -1, 3);
   double x_common, y_common, z_common;
-  My_Space.GetPointOfIntersection(AB, a, x_common, y_common, z_common);
+  My_Space.GetPointOfIntersection(AB, a, &x_common, &y_common, &z_common);
   EXPECT_EQ(x_common, -2);
   EXPECT_EQ(y_common, 3);
   EXPECT_EQ(z_common, -5);
@@ -276,7 +276,7 @@ TEST(Class_Space, Relationship_point_of_intersection_throw_type_one) {
   Plane a(1, 6, 5, 4);
   double x_common, y_common, z_common;
   EXPECT_ANY_THROW(
-      My_Space.GetPointOfIntersection(AB, a, x_common, y_common, z_common));
+      My_Space.GetPointOfIntersection(AB, a, &x_common, &y_common, &z_common));
 }
 
 TEST(Class_Space, Relationship_point_of_intersection_throw_type_two) {
@@ -285,7 +285,7 @@ TEST(Class_Space, Relationship_point_of_intersection_throw_type_two) {
   Plane a(2, -3, 2, 2);
   double x_common, y_common, z_common;
   EXPECT_ANY_THROW(
-      My_Space.GetPointOfIntersection(AB, a, x_common, y_common, z_common));
+      My_Space.GetPointOfIntersection(AB, a, &x_common, &y_common, &z_common));
 }
 
 TEST(Class_Space, Is_perpendicular_true) {
