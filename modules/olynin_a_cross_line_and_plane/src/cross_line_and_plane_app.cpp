@@ -42,7 +42,7 @@ std::string CLPApplication::operator()(int argc, const char** argv) {
   }
 
   if ((argc > i) &&
-    (std::string(argv[i]) == "--plane" || std::string(argv[i]) == "-p")) {
+      (std::string(argv[i]) == "--plane" || std::string(argv[i]) == "-p")) {
     i += 5;
     if (argc >= i) {
       pn.SetA(strtod(argv[2], NULL));
@@ -65,7 +65,7 @@ std::string CLPApplication::operator()(int argc, const char** argv) {
   if (std::string(argv[argc - 1]) == "-i" ||
       std::string(argv[argc - 1]) == "--intersection") {
     double x, y, z;
-    sp.GetPointOfIntersection(ln, pn, x, y, z);
+    sp.GetPointOfIntersection(ln, pn, &x, &y, &z);
     os << x << " " << y << " " << z;
     std::cout << os.str() << std::endl;
     return "success";
@@ -81,7 +81,8 @@ std::string CLPApplication::operator()(int argc, const char** argv) {
 }
 
 std::string CLPApplication::help() {
-  std::string help = "This program's purpose to calculate if line crosses the plane or not";
+  std::string help =
+      "This program's purpose to calculate if line crosses the plane or not";
   return help;
 }
 
